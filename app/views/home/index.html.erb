@@ -1,0 +1,48 @@
+<h2>All Seeded Projects</h2>
+
+  <% @projects.each do |project| %>
+    <p>  Project ID: <%= project.id %> </p>
+
+    <ul style="list-style: none">
+      <li>Renovator  <%= project.renovator.firstName %> <%= project.renovator.lastName %></li>
+      <li>Zip Code: <%= project.zipCode %></li>
+      <li>Budget: $<%= project.budget %>0</li>
+      <li>Needs:
+        <% if project.intSvcs %>
+        Interior Services
+        <% end %>
+        <% if project.archSvcs %>
+        Architectural Services
+        <% end %>
+        <% if project.gcSvcs %>
+        General Contractor Services
+        <% end %>
+    </ul>
+
+    <% if project.matches.length<=0 %>
+      <form id="match1form" {action: "create"}>
+        <input type="button" name="match1button" value="Match Project <%= project.id %> with the nearest contractor">
+      </form>
+      <br>
+      <form id="matchNform">
+        <input type="button" name="matchNbutton" value="Match Project <%= project.id %> with the following number of contractors:">
+       <input type="number" value="2" min="2" max="10" step="1" required>
+      </form>
+    <% else %>
+      <p> Contractor Matches </p>
+      <% @matches.each do |match| %>
+        <% if match.id = project.match.id %>
+          <p> Match ID: <%= match.id %> </p>
+          <ul style="list-style: none">
+            <li>Contractor ID: <%= match.contractor_id %></li>
+            <% @contractors.each do |contractor| %>
+              <% if match.contractor_id = contractor.id %>
+                <li>Company Name: <%= contractor.companyName %></li>
+                <li>Distance: </li>
+              <% end %>
+            <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+    <br>
+  <% end %>
