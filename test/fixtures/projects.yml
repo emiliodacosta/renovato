@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  zipCode: MyString
+  intSvcs: false
+  archSvcs: false
+  gcSvcs: false
+  budget: 9.99
+  renovator_id: 1
+
+two:
+  zipCode: MyString
+  intSvcs: false
+  archSvcs: false
+  gcSvcs: false
+  budget: 9.99
+  renovator_id: 1

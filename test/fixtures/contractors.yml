@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  companyName: MyString
+  email: MyString
+  zipCode: MyString
+  intSvcs: false
+  archSvcs: false
+  gcSvcs: false
+
+two:
+  companyName: MyString
+  email: MyString
+  zipCode: MyString
+  intSvcs: false
+  archSvcs: false
+  gcSvcs: false
