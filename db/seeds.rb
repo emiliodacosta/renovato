@@ -14,6 +14,7 @@ p3 = Project.create!(zipCode: "11954", intSvcs: true, archSvcs: false, gcSvcs: f
 p4 = Project.create!(zipCode: "11954", intSvcs: true, archSvcs: true, gcSvcs: true, budget: 75000, renovator_id: 1)
 p5 = Project.create!(zipCode: "10003", intSvcs: true, archSvcs: false, gcSvcs: false, budget: 25000, renovator_id: 1)
 p6 = Project.create!(zipCode: "10003", intSvcs: true, archSvcs: true, gcSvcs: true, budget: 75000, renovator_id: 1)
+p7 = Project.create!(zipCode: "07028", intSvcs: true, archSvcs: false, gcSvcs: false, budget: 25000, renovator_id: 1)
 
 c1 = Contractor.create!(companyName: "No Constraints Newark", email: "ncn@gmail.com", zipCode: "07105", intSvcs: true, archSvcs: true, gcSvcs: true)
 c2 = Contractor.create!(companyName: "Philly ints", email: "phillyints@gmail.com", zipCode: "19019", intSvcs: true, archSvcs: false, gcSvcs: false)

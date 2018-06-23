@@ -3,19 +3,26 @@
 
 
       <% @projects.each do |project| %>
-      <p> Renovator <%= project.renovator.firstName %> <%= project.renovator.lastName %> </p>
+      <p>  Renovator
+      <%= project.renovator.firstName %> <%= project.renovator.lastName %> </p>
       <ul style="list-style: none">
         <li>Project ID: <%= project.id %></li>
         <li>Zip Code: <%= project.zipCode %></li>
         <li>Budget: $<%= project.budget %>0</li>
         <li>Needs:
-          <% if project.intSvcs %> Interior Services
+          <% if project.intSvcs %>
+          Interior Services
           <% end %>
-          <% if project.archSvcs %> Architectural Services
+          <% if project.archSvcs %>
+          Architectural Services
           <% end %>
-          <% if project.gcSvcs %> General Contractor Services
+          <% if project.gcSvcs %>
+          General Contractor Services
           <% end %>
       </ul>
+      <%# if project.match.id %>
+      <p> Matches </p>
+      <%# end %>
       <br>
       <% end %>
 
