@@ -1,0 +1,28 @@
+
+    <h2>All Seeded Projects</h2>
+
+
+      <% @projects.each do |project| %>
+      <p> Renovator <%= project.renovator.firstName %> <%= project.renovator.lastName %> </p>
+      <ul style="list-style: none">
+        <li>Project ID: <%= project.id %></li>
+        <li>Zip Code: <%= project.zipCode %></li>
+        <li>Budget: $<%= project.budget %>0</li>
+        <li>Needs:
+          <% if project.intSvcs %> Interior Services
+          <% end %>
+          <% if project.archSvcs %> Architectural Services
+          <% end %>
+          <% if project.gcSvcs %> General Contractor Services
+          <% end %>
+      </ul>
+      <br>
+      <% end %>
+
+
+      <p>
+
+
+
+      </p>
+
