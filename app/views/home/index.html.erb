@@ -20,12 +20,13 @@
     </ul>
 
     <% if project.matches.length<=0 %>
-      <form id="match1form" {action: "create"}>
-        <input type="button" name="match1button" value="Match Project <%= project.id %> with the nearest contractor">
+
+      <form action="/matches" method="post">
+        <input type="button" name="1match" value="Match Project <%= project.id %> with the nearest contractor">
       </form>
       <br>
-      <form id="matchNform">
-        <input type="button" name="matchNbutton" value="Match Project <%= project.id %> with the following number of contractors:">
+      <form action="/matches" method="post">
+        <input type="button" name="nMatches" value="Match Project <%= project.id %> with the following number of contractors:">
        <input type="number" value="2" min="2" max="10" step="1" required>
       </form>
     <% else %>

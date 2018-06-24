@@ -5,8 +5,4 @@ class HomeController < ApplicationController
     @matches = Match.all
     render :index
   end
-
-  def create
-
-  end
 end
