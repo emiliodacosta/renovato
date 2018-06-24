@@ -21,29 +21,25 @@
 
     <% if project.matches.length<=0 %>
 
-      <form action="/matches" method="post">
-        <input type="button" name="1match" value="Match Project <%= project.id %> with the nearest contractor">
+      <form action="<%= match_project_path(project) %>" method="post">
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>%">
+        <input type="submit" name="1match" value="Match Project <%= project.id %> with the nearest contractor">
       </form>
       <br>
-      <form action="/matches" method="post">
-        <input type="button" name="nMatches" value="Match Project <%= project.id %> with the following number of contractors:">
-       <input type="number" value="2" min="2" max="10" step="1" required>
+      <form action="<%= match_project_path(project) %>" method="post">
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>%">
+        <input type="submit" name="nMatches" value="Match Project <%= project.id %> with the following number of contractors:">
+        <input name="limit" type="number" value="2" min="2" max="10" step="1" required>
       </form>
     <% else %>
       <p> Contractor Matches </p>
-      <% @matches.each do |match| %>
-        <% if match.id = project.match.id %>
-          <p> Match ID: <%= match.id %> </p>
-          <ul style="list-style: none">
-            <li>Contractor ID: <%= match.contractor_id %></li>
-            <% @contractors.each do |contractor| %>
-              <% if match.contractor_id = contractor.id %>
-                <li>Company Name: <%= contractor.companyName %></li>
-                <li>Distance: </li>
-              <% end %>
-            <% end %>
-        <% end %>
+      <ul style="list-style: none">
+      <% project.contractors.each do |contractor| %>
+            <li>Contractor ID: <%= contractor.id %></li>
+            <li>Company Name: <%= contractor.companyName %></li>
+            <li>Distance: </li>
       <% end %>
+      </ul>
     <% end %>
     <br>
   <% end %>

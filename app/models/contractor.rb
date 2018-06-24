@@ -3,4 +3,8 @@ class Contractor < ApplicationRecord
   primary_key: :id,
   foreign_key: :contractor_id,
   class_name: 'Match'
+
+  has_many :projects,
+  through: :matches,
+  source: :project
 end
