@@ -2,17 +2,14 @@
 
 class ProjectsController < ApplicationController
   def match
-    puts params[:limit]
-    puts
-    puts
-    puts
-    @project = Project.find(params[:id])
-    validContractors = if params[:limit]
-                         @project.match(params[:limit].to_i)
+    project = Project.find(params[:id])
+    zip = project.zipCode
+    valid_sorted_contractors = if params[:limit]
+                         project.match(zip, params[:limit].to_i)
                        else
-                         @project.match
+                         project.match(zip)
                        end
-    @project.contractors = validContractors
+    project.contractors = valid_sorted_contractors
     redirect_to root_path
   end
 end

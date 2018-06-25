@@ -20,6 +20,7 @@ p4 = Project.create!(zipCode: "11954", intSvcs: true, archSvcs: true, gcSvcs: fa
 p5 = Project.create!(zipCode: "10003", intSvcs: true, archSvcs: false, gcSvcs: false, budget: 25000, renovator_id: r1.id)
 p6 = Project.create!(zipCode: "10003", intSvcs: true, archSvcs: true, gcSvcs: true, budget: 75000, renovator_id: r1.id)
 p7 = Project.create!(zipCode: "07028", intSvcs: true, archSvcs: false, gcSvcs: false, budget: 25000, renovator_id: r1.id)
+p8 = Project.create!(zipCode: "06606", intSvcs: false, archSvcs: false, gcSvcs: true, budget: 25000, renovator_id: r1.id)
 
 c1 = Contractor.create!(companyName: "No Constraints Newark", email: "ncn@gmail.com", zipCode: "07105", intSvcs: true, archSvcs: true, gcSvcs: true)
 c2 = Contractor.create!(companyName: "Philly Interiors", email: "phillyinteriors@gmail.com", zipCode: "19019", intSvcs: true, archSvcs: false, gcSvcs: false)
