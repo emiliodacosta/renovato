@@ -1,10 +1,10 @@
 <h2>All Seeded Projects</h2>
 
   <% @projects.each do |project| %>
-    <p>  Project ID: <%= project.id %> </p>
+    <h3>  Project <%= project.id %> </h3>
 
     <ul style="list-style: none">
-      <li>Renovator  <%= project.renovator.firstName %> <%= project.renovator.lastName %></li>
+      <li><%= project.renovator.firstName %> <%= project.renovator.lastName %></li>
       <li>Zip Code: <%= project.zipCode %></li>
       <li>Budget: $<%= project.budget %>0</li>
       <li>Needs:
@@ -20,24 +20,28 @@
     </ul>
 
     <% if project.matches.length<=0 %>
-
       <form action="<%= match_project_path(project) %>" method="post">
         <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>%">
-        <input type="submit" name="1match" value="Match Project <%= project.id %> with the nearest contractor">
+        To Match Project <%= project.id %> with the nearest contractor
+        <input type="submit" name="1match" value="Click Here">
       </form>
       <br>
       <form action="<%= match_project_path(project) %>" method="post">
         <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>%">
-        <input type="submit" name="nMatches" value="Match Project <%= project.id %> with the following number of contractors:">
-        <input name="limit" type="number" value="2" min="2" max="10" step="1" required>
+        To Match Project <%= project.id %> with up to
+        <input name="limit" type="number" value=2 min=2 max=<%= @contractors.length %> step=1 required>
+        contractors
+        <input type="submit" name="nMatches" value="Click Here">
       </form>
     <% else %>
-      <p> Contractor Matches </p>
+      <h4> Contractor Matches </h4>
       <ul style="list-style: none">
       <% project.contractors.each do |contractor| %>
-            <li>Contractor ID: <%= contractor.id %></li>
-            <li>Company Name: <%= contractor.companyName %></li>
+            <li><%= contractor.companyName %></li>
+            <li>Zip Code: <%= contractor.zipCode %></li>
             <li>Distance: </li>
+            <li><%= contractor.email %></li>
+            <br>
       <% end %>
       </ul>
     <% end %>

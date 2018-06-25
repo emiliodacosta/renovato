@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ProjectsController < ApplicationController
   def match
     puts params[:limit]
@@ -5,7 +7,11 @@ class ProjectsController < ApplicationController
     puts
     puts
     @project = Project.find(params[:id])
-    validContractors = @project.match
+    validContractors = if params[:limit]
+                         @project.match(params[:limit].to_i)
+                       else
+                         @project.match
+                       end
     @project.contractors = validContractors
     redirect_to root_path
   end
