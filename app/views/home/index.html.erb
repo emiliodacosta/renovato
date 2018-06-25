@@ -20,6 +20,7 @@
     </ul>
 
     <% if project.matches.length<=0 %>
+    
       <form action="<%= match_project_path(project) %>" method="post">
         <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>%">
         To Match Project <%= project.id %> with the nearest contractor
@@ -30,20 +31,53 @@
         <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>%">
         To Match Project <%= project.id %> with up to
         <input name="limit" type="number" value=2 min=2 max=<%= @contractors.length %> step=1 required>
-        contractors
+        of the nearest contractors
         <input type="submit" name="nMatches" value="Click Here">
       </form>
-    <% else %>
-      <h4> Contractor Matches </h4>
-      <ul style="list-style: none">
+
+    <% elsif project.matches.length == 1 %>
+
+      <h4> Nearest Matching Contractor </h4>
       <% project.contractors.each do |contractor| %>
-            <li><%= contractor.companyName %></li>
-            <li>Zip Code: <%= contractor.zipCode %></li>
-            <li>Distance: </li>
-            <li><%= contractor.email %></li>
-            <br>
+        <% @matches.each do |match| %>
+          <% if match.project_id == project.id && match.contractor_id == contractor.id %>
+            <% distance = match.distance.round(1) %>
+            <ul style="list-style: none">
+              <li><%= contractor.companyName %></li>
+              <li>Zip Code: <%= contractor.zipCode %></li>
+              <li>Distance: <%= distance %> miles</li>
+              <li><%= contractor.email %></li>
+            </ul>
+          <% end %>
+        <% end %>
+    <% end %>
+
+    <% else %>
+
+      <h4> Contractor Matches (sorted by distance) </h4>
+      <% array = [] %>
+      <% project.contractors.each do |contractor| %>
+        <% @matches.each do |match| %>
+          <% if match.project_id == project.id && match.contractor_id == contractor.id %>
+            <% distance = match.distance.round(1) %>
+            <% array << [distance, contractor] %>
+            <% array.sort! %>
+          <% end %>
+        <% end %>
       <% end %>
-      </ul>
+
+      <% if array %>
+        <% array.each do |ele| %>
+          <ul style="list-style: none">
+          <li><%= ele[1].companyName %></li>
+          <li>Zip Code: <%= ele[1].zipCode %></li>
+          <li>Distance: <%= ele[0] %> miles</li>
+          <li><%= ele[1].email %></li>
+          </ul>
+        <% end %>
+      <% end %>
+
+    <br>
     <% end %>
     <br>
   <% end %>
